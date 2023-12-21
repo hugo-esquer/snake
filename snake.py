@@ -66,7 +66,7 @@ def snake():
     x = (x + delta_x)
     y = (y + delta_y)
         
-    if (x, y) in body_list[:-1] or x < 0 or x > WIDTH - 10 or y < 0 or y > HEIGHT:
+    if (x, y) in body_list[:-1] or x < 0 or x > WIDTH - 10 or y < 0 or y > HEIGHT - 10:
         game_over = True
         return
 
@@ -123,6 +123,8 @@ def main_game():
                     if delta_y != 10:
                         delta_x = 0
                         delta_y = -10
+                elif event.key == pygame.K_ESCAPE:
+                    return
                 else:
                     continue
         snake()
@@ -170,16 +172,18 @@ mainmenu.add.text_input("Nom: ", default="Prénom", maxchar=20, onchange=get_nam
 mainmenu.add.button("Jouer", main_game)
 mainmenu.add.button("scores", display_leaderboard)
 running = True
-while running:
-    clock = pygame.time.Clock()
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
 
-        if mainmenu.is_enabled():
-            mainmenu.mainloop(SCREEN)
-        
-        pygame.display.update()
-        clock.tick(60)
+if __name__ == '__main__':
+    while running:
+        clock = pygame.time.Clock()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            if mainmenu.is_enabled():
+                mainmenu.mainloop(SCREEN)
+            
+            pygame.display.update()
+            clock.tick(60)
 
 pygame.quit()

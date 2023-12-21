@@ -1,0 +1,3 @@
+Hugo: 19
+Tom: 17
+Erika: 14
